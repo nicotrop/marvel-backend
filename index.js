@@ -2,7 +2,7 @@ const express = require("express");
 const formidableMiddleware = require("express-formidable");
 require("dotenv").config();
 const cors = require("cors");
-const PORT = 4000;
+const PORT = process.env.PORT || 80;
 
 const app = express();
 app.use(cors());
