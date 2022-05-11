@@ -8,7 +8,7 @@ const pagination = require("../middleware/pagination");
 
 const api_key = process.env.API_KEY;
 
-router.get("/characters", async (req, res) => {
+router.get("/character", async (req, res) => {
   const results = pagination(req.query.limit, req.query.page);
   const [limit, skip] = results;
 
@@ -21,12 +21,24 @@ router.get("/characters", async (req, res) => {
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${api_key}&limit=${limit}&skip=${skip}&name=${name}`
     );
-    console.log(response.data);
     res.status(200).json(response.data);
   } catch (error) {
-    console.log(error.message);
     res.status(400).json(error.message);
   }
+});
+
+router.get("/character/:characterid", async (req, res) => {
+  const characterID = req.params.characterid;
+
+  try {
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/character/${characterID}?apiKey=${api_key}`
+    );
+    res.status(200).json(response.data);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+  res.json(characterID);
 });
 
 module.exports = router;
