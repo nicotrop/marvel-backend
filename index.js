@@ -10,7 +10,7 @@ app.use(cors());
 app.use(formidableMiddleware());
 
 //Creation de la BDD
-mongoose.connect("mongodb://127.0.0.1:27017/marvel");
+mongoose.connect(process.env.MONGODB_CONNECT);
 
 //Import des routes
 const comics = require("./routes/comics");
