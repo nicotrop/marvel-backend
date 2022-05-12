@@ -19,6 +19,9 @@ app.use(comics);
 const signup = require("./routes/signup");
 app.use(signup);
 
+const login = require("./routes/login");
+app.use(login);
+
 const characters = require("./routes/characters");
 app.use(characters);
 
