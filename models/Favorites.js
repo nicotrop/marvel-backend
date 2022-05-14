@@ -5,6 +5,7 @@ const Favorites = mongoose.model("Favorites", {
   path: String,
   extension: String,
   description: String,
+  elementID: String,
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
