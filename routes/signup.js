@@ -11,7 +11,7 @@ router.post("/user/signup", async (req, res) => {
   const { username, email, password } = req.fields;
   console.log(username, email, password);
   try {
-    if (email && password && username && password) {
+    if (email && username && password) {
       const emailDuplicate = await User.findOne({ email: email });
       const usernameDuplicate = await User.findOne({ username: username });
       if (!emailDuplicate) {

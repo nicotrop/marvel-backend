@@ -25,6 +25,9 @@ app.use(login);
 const characters = require("./routes/characters");
 app.use(characters);
 
+const favorites = require(".//routes/favorites");
+app.use(favorites);
+
 app.all("*", (req, res) => {
   res.status(404).json({ message: "Page not found" });
 });
