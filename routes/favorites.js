@@ -43,12 +43,20 @@ router.delete("/favorite/delete", async (req, res) => {
 //Get favorites
 router.get("/favorite", async (req, res) => {
   const token = req.fields.token;
-  try {
-    const user = await User.findOne({ token: token });
-    const list = await Favorites.find({ owner: user._id });
-    res.status(200).json(list);
-  } catch (error) {
-    res.status(400).json(error.message);
+  if (token) {
+    try {
+      const user = await User.findOne({ token: token });
+      if (user) {
+        const list = await Favorites.find({ owner: user._id });
+        res.status(200).json(list);
+      } else {
+        res.status(400).json({ message: "could not find user" });
+      }
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  } else {
+    res.status(400).json({ message: "no token" });
   }
 });
 
