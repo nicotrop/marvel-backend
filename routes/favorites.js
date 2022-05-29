@@ -41,7 +41,7 @@ router.delete("/favorite/delete", async (req, res) => {
 });
 
 //Get favorites
-router.get("/favorite", async (req, res) => {
+router.post("/favorite", async (req, res) => {
   const token = req.fields.token;
   if (token) {
     try {
