@@ -29,7 +29,6 @@ router.get("/character", async (req, res) => {
 
 router.get("/character/:characterid", async (req, res) => {
   const characterID = req.params.characterid;
-
   try {
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/character/${characterID}?apiKey=${api_key}`
@@ -38,7 +37,6 @@ router.get("/character/:characterid", async (req, res) => {
   } catch (error) {
     res.status(400).json(error.message);
   }
-  res.json(characterID);
 });
 
 module.exports = router;
