@@ -7,9 +7,9 @@ const User = require("../models/User");
 
 //MiddleWare authenticated
 const isAuthenticated = async (req, res, next) => {
-  if (req.fields.token) {
+  try {
     const user = await User.findOne({
-      token: req.fields.token,
+      token: req.headers.authorization.replace("Bearer ", ""),
     });
     if (!user) {
       res.status(400).json({
@@ -19,8 +19,8 @@ const isAuthenticated = async (req, res, next) => {
       req.user = user;
       next();
     }
-  } else {
-    return res.status(401).json({ error: "Unauthorized" });
+  } catch (error) {
+    res.status(401).json(error);
   }
 };
 
