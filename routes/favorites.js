@@ -40,7 +40,6 @@ router.post("/favorite/add", isAuthenticated, async (req, res) => {
 
 //Get favorites
 router.get("/favorite/list", isAuthenticated, async (req, res) => {
-  console.log(req.user);
   if (req.user) {
     try {
       const list = await Favorites.find({ owner: req.user._id });

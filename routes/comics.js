@@ -34,7 +34,6 @@ router.get("/comics/:characterid", async (req, res) => {
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/comics/${characterID}?apiKey=${api_key}`
     );
-    console.log(response.data);
     res.status(200).json(response.data);
   } catch (error) {
     console.log(error.message);

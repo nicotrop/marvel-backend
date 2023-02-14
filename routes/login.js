@@ -9,7 +9,6 @@ const User = require("../models/User");
 
 router.post("/user/login", async (req, res) => {
   const { email, password } = req.fields;
-  console.log(email, password);
 
   try {
     if (email && password) {
